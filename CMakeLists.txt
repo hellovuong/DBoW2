@@ -42,9 +42,8 @@ configure_file(src/DBoW2.cmake.in
   "${PROJECT_BINARY_DIR}/DBoW2Config.cmake" @ONLY)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-if(BUILD_DBoW2)
-  install(DIRECTORY include/DBoW2 DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
-endif()
+install(DIRECTORY include/DBoW2 DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
+
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/DBoW2Config.cmake"
   DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
 install(FILES "${PROJECT_BINARY_DIR}/DBoW2Config.cmake" 
