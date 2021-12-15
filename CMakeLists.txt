@@ -38,3 +38,16 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 add_library(DBoW2 SHARED ${SRCS_DBOW2} ${SRCS_DUTILS})
 target_link_libraries(DBoW2 ${OpenCV_LIBS})
 
+configure_file(src/DBoW2.cmake.in
+  "${PROJECT_BINARY_DIR}/DBoW2Config.cmake" @ONLY)
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+if(BUILD_DBoW2)
+  install(DIRECTORY include/DBoW2 DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
+endif()
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/DBoW2Config.cmake"
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
+install(FILES "${PROJECT_BINARY_DIR}/DBoW2Config.cmake" 
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/DBoW2/)
+install(DIRECTORY ${DEPENDENCY_INSTALL_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX} OPTIONAL)
+
